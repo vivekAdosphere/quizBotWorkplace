@@ -6,16 +6,14 @@ module.exports = {
 
 
     //questions
-    askForName: "What is your name?",
-    askForDesignation: "What is your designation?",
-    askForDistrictId: "What is your district Id?",
+    existingUser: "*Name:* John Doe\n*Designation:* Manager\n*District:* 00001",
+    askForName: "Enter your name",
+    askForDesignation: "Enter your designation",
+    askForDistrictId: "Enter your district Id",
 
-    videoHold: "Please wait for the video,it will take few seconds",
-    learnFromVideo: "Please refer this video for your explanation",
-    startTheQuiz: "Please reply with 1 to start the quiz",
-    attachmentError: "Please try again with text",
-
-
+    videoHold: "Please wait while video is loading",
+    learnFromVideo: "Please refer the video above before attempting for the quiz",
+    attachmentError: "Invalid Input. Attachments are not allowed",
 
     // Fallbacks
     somethingWentWrong: "Something went wrong.\n\n" +

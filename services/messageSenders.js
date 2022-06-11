@@ -155,7 +155,7 @@ exports.sendVideoFile = async(senderID, message) => {
                 "attachment": {
                     "type": "video",
                     "payload": {
-                        "url": "https://af49-124-123-122-221.in.ngrok.io/video.mp4",
+                        "url": `${SERVER_URL}/video.mp4`,
                     }
 
                 }
@@ -169,7 +169,8 @@ exports.sendVideoFile = async(senderID, message) => {
             method: "post"
         })
     } catch (e) {
-        logger.error(`Error, Text message sending error --> ${senderID} : ${e.response.data}`)
+        console.log(e.response.data.error)
+        logger.error(`Error, Video message sending error --> ${senderID} : ${e.response.data}`)
 
     }
 }
@@ -186,7 +187,7 @@ exports.sendImageFile = async(senderID, message) => {
                 "attachment": {
                     "type": "image",
                     "payload": {
-                        "url": "https://af49-124-123-122-221.in.ngrok.io/image.jpeg",
+                        "url": `${SERVER_URL}/image.jpeg`,
                     }
 
                 }

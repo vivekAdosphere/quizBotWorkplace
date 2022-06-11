@@ -37,7 +37,7 @@ exports.demoQuickReply = () => { // Bot Introduction
 
 exports.userReply = () => {
     return {
-        "text": "Are you John doe?\nDesignation : Senior\nDistrict Id: 1222323",
+        "text": "Do you confirm the details above ?",
         "quick_replies": [{
                 "content_type": "text",
                 "title": "Yes",
@@ -55,7 +55,7 @@ exports.userReply = () => {
 
 exports.quizStart = () => {
     return {
-        "text": "Please click on 'Start' to initiate the quiz",
+        "text": "Click on the 'Start' button to initiate the quiz",
         "quick_replies": [{
             "content_type": "text",
             "title": "Start",
