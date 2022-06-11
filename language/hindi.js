@@ -1,7 +1,7 @@
 module.exports = {
     // Greetings
     initiateConversationMessages: ["hi", "hey", "hello", "HELLO", "HEY", "HI", "Hi", "Hey", "Hello"],
-    welcomeMessage: "Welcome to the workplace demo bot",
+    welcomeMessage: "For enhanced participation of electors in the electoral process and reducing the electoral malpractices, it is essential to provide learning & development training to all BLOs. This bot will help all BLOs to register for learning modules and complete required training.",
     thankYouMsg: "Thank you for taking the quiz",
 
 
