@@ -76,7 +76,18 @@ exports.question1 = () => {
                 "content_type": "text",
                 "title": "Mahanadi",
                 "payload": "Mahanadi"
+            },
+            {
+                "content_type": "text",
+                "title": "Sabarmati",
+                "payload": "Sabarmati"
+            },
+            {
+                "content_type": "text",
+                "title": "Ganga",
+                "payload": "Ganga"
             }
+
 
         ]
     }
@@ -85,16 +96,16 @@ exports.question1 = () => {
 
 exports.question2 = () => {
     return {
-        "text": "*Question 2*\nThe Central Rice Research Station is situated in?",
+        "text": "*Question 2*\nThe first country in the world to use postcards was the United States of America.",
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Chennai",
-                "payload": "Chennai"
+                "title": "Yes",
+                "payload": "yesquestion2"
             },
             {
                 "content_type": "text",
-                "title": "Cuttack",
-                "payload": "Cuttack"
+                "title": "No",
+                "payload": "noquestion2"
             }
 
         ]
@@ -123,16 +134,26 @@ exports.question3 = () => {
 
 exports.question4 = () => {
     return {
-        "text": "*Question 4*\nTsunamis are not caused by",
+        "text": "*Question 4*\nOnce upon a time there _________ (live) a man called Damocles.",
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Hurricanes",
-                "payload": "Hurricanes"
+                "title": "lived",
+                "payload": "lived"
             },
             {
                 "content_type": "text",
-                "title": "Earthquakes",
-                "payload": "Earthquakes"
+                "title": "was lived",
+                "payload": "waslived"
+            },
+            {
+                "content_type": "text",
+                "title": "an lived",
+                "payload": "anlived"
+            },
+            {
+                "content_type": "text",
+                "title": "live",
+                "payload": "live"
             }
 
         ]
@@ -142,16 +163,16 @@ exports.question4 = () => {
 
 exports.question5 = () => {
     return {
-        "text": "*Question 5*\nThe hottest planet in the solar system?",
+        "text": "*Question 5*\nBill Gates is the founder of Amazon.",
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Mercury",
-                "payload": "Mercury"
+                "title": "Yes",
+                "payload": "yesquestion5"
             },
             {
                 "content_type": "text",
-                "title": "Venus",
-                "payload": "Venus"
+                "title": "No",
+                "payload": "noquestion5"
             }
 
         ]

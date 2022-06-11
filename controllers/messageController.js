@@ -117,8 +117,9 @@ exports.question2Handler = async(senderID, message) => {
 }
 exports.question3Handler = async(senderID, message) => {
     try {
-        if (message === "Cuttack") {
+        if (message === "noquestion2") {
             userDataUpdator(senderID, "score", userData.get(senderID).score + 1)
+            console.log(userData.get(senderID).score)
         }
         await sendQuickReplyMessage(senderID, question3())
         flowPathIndicator.set(senderID, "question3")
@@ -129,9 +130,11 @@ exports.question3Handler = async(senderID, message) => {
 exports.question4Handler = async(senderID, message) => {
     try {
         if (message === "Bhagirathi") {
-            console.log(message)
             userDataUpdator(senderID, "score", userData.get(senderID).score + 1)
+
         }
+        console.log(userData.get(senderID).score)
+
         await sendQuickReplyMessage(senderID, question4())
         flowPathIndicator.set(senderID, "question4")
     } catch (err) {
@@ -140,10 +143,11 @@ exports.question4Handler = async(senderID, message) => {
 }
 exports.question5Handler = async(senderID, message) => {
     try {
-        if (message === "Hurricanes") {
-            console.log(message)
+        if (message === "lived") {
             userDataUpdator(senderID, "score", userData.get(senderID).score + 1)
         }
+        console.log(userData.get(senderID).score)
+
         await sendQuickReplyMessage(senderID, question5())
         flowPathIndicator.set(senderID, "question5")
 
@@ -163,10 +167,11 @@ exports.otherTextMessageHandler = async(senderID) => {
 
 exports.thankYouMessageSender = async(senderID, message) => {
     try {
-        if (message === "Venus") {
-            console.log(message)
+        if (message === "noquestion5") {
             userDataUpdator(senderID, "score", userData.get(senderID).score + 1)
         }
+        console.log(userData.get(senderID).score)
+
         await sendTextMessage(senderID, languageChooser(senderID).thankYouMsg + ", " + `your score is ${userData.get(senderID).score}/5`)
         await sendImageFile(senderID)
         clearMaps(senderID)

@@ -50,36 +50,56 @@ exports.handleQuickReplyMessage = async(senderID, quickReplyObject) => {
         case "startquiz":
             question1Handler(senderID)
             break
+
+            //question 1 options handle here
         case "Narmada":
-            console.log(payload)
             question2Handler(senderID, payload)
             break
         case "Mahanadi":
             question2Handler(senderID, payload)
             break
-        case "Chennai":
+        case "Sabarmati":
+            question2Handler(senderID, payload)
+            break
+        case "Ganga":
+            question2Handler(senderID, payload)
+            break
+
+            //question2 options handle here
+        case "yesquestion2":
             question3Handler(senderID, payload)
             break
-        case "Cuttack":
-            console.log(payload)
+        case "noquestion2":
+
             question3Handler(senderID, payload)
             break
+
+            //question 3 options handle here
         case "Mandakini":
             question4Handler(senderID, payload)
             break
         case "Bhagirathi":
             question4Handler(senderID, payload)
             break
-        case "Hurricanes":
+
+            // question 4 options handle here
+        case "lived":
             question5Handler(senderID, payload)
             break
-        case "Earthquakes":
+        case "waslived":
             question5Handler(senderID, payload)
             break
-        case "Mercury":
+        case "anlived":
+            question5Handler(senderID, payload)
+            break
+        case "live":
+            question5Handler(senderID, payload)
+            break
+            //queestion 5 options handle here
+        case "yesquestion5":
             thankYouMessageSender(senderID, payload)
             break
-        case "Venus":
+        case "noquestion5":
             thankYouMessageSender(senderID, payload)
             break
         default:
