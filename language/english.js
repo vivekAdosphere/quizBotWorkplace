@@ -6,7 +6,7 @@ module.exports = {
 
 
     //questions
-    existingUser: "*Name:* John Doe\n*Designation:* Manager\n*District:* 00001",
+    existingUser: "We are able to fetch below mentioned details for this registered number.\n\n*Name:* John Doe\n*Designation:* Manager\n*District:* 00001",
     askForName: "Enter your name",
     askForDesignation: "Enter your designation",
     askForDistrictId: "Enter your district Id",
