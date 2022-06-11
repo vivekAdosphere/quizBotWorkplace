@@ -100,7 +100,6 @@ exports.quizHandler = async(senderID) => {
     }
 }
 
-let score = 0;
 exports.question1Handler = async(senderID) => {
     try {
         await sendQuickReplyMessage(senderID, question1())
@@ -112,11 +111,11 @@ exports.question1Handler = async(senderID) => {
 }
 exports.question2Handler = async(senderID, message) => {
     try {
-        console.log(message)
         if (message === "Narmada") {
-            score++;
+            console.log(message)
+
+            userDataUpdator(senderID, "score", 1)
         }
-        console.log(score)
         await sendQuickReplyMessage(senderID, question2())
         flowPathIndicator.set(senderID, "question2")
     } catch (err) {
@@ -126,11 +125,10 @@ exports.question2Handler = async(senderID, message) => {
 }
 exports.question3Handler = async(senderID, message) => {
     try {
-        console.log(message)
         if (message === "Cuttack") {
-            score++
+            console.log(message)
+            userDataUpdator(senderID, "score", 2)
         }
-        console.log(score)
         await sendQuickReplyMessage(senderID, question3())
         flowPathIndicator.set(senderID, "question3")
     } catch (err) {
@@ -140,6 +138,10 @@ exports.question3Handler = async(senderID, message) => {
 }
 exports.question4Handler = async(senderID, message) => {
     try {
+        if (message === "Bhagirathi") {
+            console.log(message)
+            userDataUpdator(senderID, "score", 3)
+        }
         await sendQuickReplyMessage(senderID, question4())
         flowPathIndicator.set(senderID, "question4")
     } catch (err) {
@@ -149,6 +151,10 @@ exports.question4Handler = async(senderID, message) => {
 }
 exports.question5Handler = async(senderID, message) => {
     try {
+        if (message === "Hurricanes") {
+            console.log(message)
+            userDataUpdator(senderID, "score", 4)
+        }
         await sendQuickReplyMessage(senderID, question5())
         flowPathIndicator.set(senderID, "question5")
 
@@ -169,7 +175,13 @@ exports.otherTextMessageHandler = async(senderID) => {
 
 exports.thankYouMessageSender = async(senderID, message) => {
     try {
+        if (message === "Venus") {
+            console.log(message)
+            userDataUpdator(senderID, "score", 5)
+        }
         await sendTextMessage(senderID, languageChooser(senderID).thankYouMsg)
+        await sendTextMessage(senderID, `You have successfully scored ${userData.get(senderID)} and you have earned the certificate`)
+
         await sendImageFile(senderID)
         clearMaps(senderID)
 

@@ -78,12 +78,9 @@ exports.handleQuickReplyMessage = async(senderID, quickReplyObject) => {
             break
         case "Mercury":
             thankYouMessageSender(senderID, payload)
-            sendTextMessage(senderID, `You have successfully scored ${score} and you have earned the certificate`)
             break
         case "Venus":
             thankYouMessageSender(senderID, payload)
-            sendTextMessage(senderID, `You have successfully scored ${score} and you have earned the certificate`)
-
             break
         default:
             await sendTextMessage(senderID, languageChooser(senderID).somethingWentWrong)
