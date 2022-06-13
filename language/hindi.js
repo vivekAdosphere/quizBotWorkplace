@@ -4,7 +4,8 @@ module.exports = {
     welcomeMessage: "For enhanced participation of electors in the electoral process and reducing the electoral malpractices, it is essential to provide learning & development training to all BLOs. This bot will help all BLOs to register for learning modules and complete required training.",
     thankYouMsg: "Thank you for taking the quiz",
 
-
+    //menu options
+    selectMenu: "Please select one between these categories",
     //questions
     existingUser: "We are able to fetch below mentioned details for this registered number.\n\n*Name:* John Doe\n*Designation:* Manager\n*District:* 00001",
     askForName: "Enter your name",

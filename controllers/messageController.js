@@ -2,8 +2,8 @@ const mapNames = require("../configuration/mapNames");
 const { clearMaps } = require("../utilities/utilities")
 const { MapToLocal } = require("../services/mapToLocalDB");
 const languageChooser = require("../language/languageChooser");
-const { userReply, quizStart, question1, question2, question3, question4, question5 } = require("../utilities/payloadStorage")
-const { sendTextMessage, sendQuickReplyMessage, sendVideoFile, sendImageFile } = require("../services/messageSenders");
+const { userReply, quizStart, question1, question2, question3, question4, question5, menuSelector } = require("../utilities/payloadStorage")
+const { sendTextMessage, sendQuickReplyMessage, sendVideoFile, sendImageFile, sendCardMenu } = require("../services/messageSenders");
 
 // Map Variables
 let flowPathIndicator = new MapToLocal(mapNames.flowPathIndicator)
@@ -40,6 +40,10 @@ let userDataUpdator = (senderID, key, value) => {
  * @param {string} senderID 
  * @description Starting Covnersation Handler
  */
+
+//the chat function starts from here
+//when user initiate the conversation then this function will call
+//this funciton set the flowapth to 1
 exports.initConversationHandler = async(senderID) => {
     try {
         clearMaps(senderID)
@@ -51,6 +55,23 @@ exports.initConversationHandler = async(senderID) => {
         clearMaps(senderID)
     }
 
+}
+
+//in above function we ask user for existing record , user reply with quick reply(YES<NO)
+//we have to handle next function in quick reply controller
+
+//if user answer with YES 
+//then we have to send the generic template to select one of them
+
+
+exports.menuHandler = async(senderID) => {
+    try {
+        await sendTextMessage(senderID, languageChooser(senderID).selectMenu)
+        await sendCardMenu(senderID, menuSelector())
+    } catch (err) {
+        logger.error(`Error, from MENU hanlder --> ${senderID} : ${err.response.data}`)
+
+    }
 }
 
 exports.nameHandler = async(senderID) => {
@@ -75,7 +96,7 @@ exports.designationHandler = async(senderID) => {
 exports.districtIdHandler = async(senderID) => {
     try {
         await sendTextMessage(senderID, languageChooser(senderID).askForDistrictId)
-        flowPathIndicator.set(senderID, "4")
+        flowPathIndicator.set(senderID, "menu")
 
     } catch (err) {
         clearMaps(senderID)

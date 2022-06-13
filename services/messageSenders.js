@@ -140,6 +140,31 @@ exports.sendQuickReplyMessage = async(senderID, payloadObject) => {
     }
 }
 
+//send card menu
+
+exports.sendCardMenu = async(senderID, payloadObject) => {
+    try {
+        markMessageRead(senderID)
+        const payload = {
+            recipient: {
+                id: senderID
+            },
+            message: payloadObject,
+        }
+        return await axios({
+            url: `${API_BASE_URL}/me/messages`,
+            data: payload,
+            params: { access_token: ACCESS_TOKEN },
+            method: "post"
+        })
+
+    } catch (err) {
+        logger.error(`Error, Video message sending error --> ${senderID} : ${err.response.data}`)
+
+    }
+}
+
+
 
 
 //send video files

@@ -37,7 +37,8 @@ const {
     question2Handler,
     question3Handler,
     question4Handler,
-    question5Handler
+    question5Handler,
+    menuHandler
 } = require("./messageController");
 const { question4, question3, question2, question1, question5, userReply, quizStart } = require("../utilities/payloadStorage");
 
@@ -61,13 +62,16 @@ exports.handleTextMessage = async(senderID, message) => {
 
         switch (currentPathIndex) {
             case "1":
-                await sendQuickReplyMessage(senderID, userReply())
+                sendQuickReplyMessage(senderID, userReply())
                 break
             case "2":
                 designationHandler(senderID)
                 break
             case "3":
                 districtIdHandler(senderID)
+                break
+            case "menu":
+                menuHandler(senderID)
                 break
             case "4":
                 quizHandler(senderID)

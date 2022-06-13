@@ -21,7 +21,7 @@ User Defined Dependencies :
 const mapNames = require("../configuration/mapNames");
 const { MapToLocal } = require("../services/mapToLocalDB");
 const { sendTextMessage, sendQuickReplyMessage } = require("../services/messageSenders");
-const { otherTextMessageHandler, initConversationHandler, introductionMessageHandler, quizHandler, nameHandler, question1Handler, question2Handler, question3Handler, question4Handler, question5Handler, thankYouMessageSender } = require("./messageController")
+const { otherTextMessageHandler, initConversationHandler, introductionMessageHandler, quizHandler, nameHandler, question1Handler, question2Handler, question3Handler, question4Handler, question5Handler, thankYouMessageSender, menuHandler } = require("./messageController")
 const languageChooser = require("../language/languageChooser")
     // Map Variables
 let flowPathIndicator = new MapToLocal(mapNames.flowPathIndicator)
@@ -42,7 +42,7 @@ exports.handleQuickReplyMessage = async(senderID, quickReplyObject) => {
             introductionMessageHandler(senderID)
             break
         case "Yes":
-            quizHandler(senderID)
+            menuHandler(senderID)
             break
         case "No":
             nameHandler(senderID)

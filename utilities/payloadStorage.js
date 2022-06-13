@@ -53,6 +53,50 @@ exports.userReply = () => {
     }
 }
 
+exports.menuSelector = () => {
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                        "title": "Module1",
+                        "image_url": "https://images.unsplash.com/photo-1547082688-9077fe60b8f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1489&q=80",
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Module1",
+                            "payload": "module1"
+                        }],
+                    },
+
+                    // Company Privacy Policy
+                    {
+                        "title": "Module2",
+                        "image_url": "https://images.unsplash.com/photo-1521791055366-0d553872125f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Module2",
+                            "payload": "module2"
+                        }],
+                    },
+
+                    {
+                        "title": "Module3",
+                        "image_url": "https://images.unsplash.com/photo-1580795479025-93d13fd9aa6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1325&q=80",
+                        "buttons": [{
+                            "type": "postback",
+                            "title": "Module3",
+                            "payload": "module3"
+                        }],
+                    },
+
+
+                ]
+            }
+        }
+    }
+}
+
 exports.quizStart = () => {
     return {
         "text": "Click on the 'Start' button to initiate the quiz",

@@ -20,7 +20,7 @@ User Defined Dependencies :
 const mapNames = require("../configuration/mapNames");
 const { MapToLocal } = require("../services/mapToLocalDB");
 const { sendTextMessage, sendQuickReplyMessage } = require("../services/messageSenders");
-const { otherTextMessageHandler, initConversationHandler, introductionMessageHandler, nameHandler } = require("./messageController")
+const { otherTextMessageHandler, initConversationHandler, introductionMessageHandler, nameHandler, quizHandler } = require("./messageController")
 
 // Map Variables
 let flowPathIndicator = new MapToLocal(mapNames.flowPathIndicator)
@@ -40,7 +40,15 @@ exports.handlePostbackMessage = async(senderID, postbackObject) => {
         case "GET_STARTED":
             initConversationHandler(senderID)
             break
-
+        case "module1":
+            quizHandler(senderID)
+            break
+        case "module2":
+            quizHandler(senderID)
+            break
+        case "module3":
+            quizHandler(senderID)
+            break
         default:
             await sendTextMessage(senderID, languageChooser(senderID).somethingWentWrong)
     }
