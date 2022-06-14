@@ -38,6 +38,14 @@ let selectedCommunicationLanguage = new MapToLocal(mapNames.selectedCommunicatio
 exports.handleQuickReplyMessage = async(senderID, quickReplyObject) => {
     const payload = quickReplyObject.payload
     switch (payload) {
+        case "English":
+            selectedCommunicationLanguage.set(senderID, "English")
+            initConversationHandler(senderID)
+            break
+        case "ગુજરાતી":
+            selectedCommunicationLanguage.set(senderID, "ગુજરાતી")
+            initConversationHandler(senderID)
+            break
         case "Start":
             introductionMessageHandler(senderID)
             break

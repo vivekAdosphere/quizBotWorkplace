@@ -24,7 +24,7 @@ let selectedCommunicationLanguage = new MapToLocal(mapNames.selectedCommunicatio
 
 // Available Languages
 const english = require("./english");
-const hindi = require("./hindi");
+const gujarati = require("./gujarati");
 
 /**
  * 
@@ -33,10 +33,10 @@ const hindi = require("./hindi");
  * @description Helps to choose appropriate language file
  */
 module.exports = (senderID) => {
-    if (selectedCommunicationLanguage.has(senderID) && selectedCommunicationLanguage.get(senderID) === "1") {
+    if (selectedCommunicationLanguage.has(senderID) && selectedCommunicationLanguage.get(senderID) === "English") {
         return english;
-    } else if (selectedCommunicationLanguage.has(senderID) && selectedCommunicationLanguage.get(senderID) === "2") {
-        return hindi;
+    } else if (selectedCommunicationLanguage.has(senderID) && selectedCommunicationLanguage.get(senderID) === "ગુજરાતી") {
+        return gujarati;
     } else {
         return english;
     }

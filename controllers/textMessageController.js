@@ -38,7 +38,8 @@ const {
     question3Handler,
     question4Handler,
     question5Handler,
-    menuHandler
+    menuHandler,
+    languageHandler
 } = require("./messageController");
 const { question4, question3, question2, question1, question5, userReply, quizStart } = require("../utilities/payloadStorage");
 
@@ -56,7 +57,7 @@ let selectedCommunicationLanguage = new MapToLocal(mapNames.selectedCommunicatio
 exports.handleTextMessage = async(senderID, message) => {
 
     if (languageChooser(senderID).initiateConversationMessages.includes(message)) {
-        initConversationHandler(senderID, message)
+        languageHandler(senderID)
     } else if (flowPathIndicator.has(senderID)) {
         const currentPathIndex = flowPathIndicator.get(senderID)
 

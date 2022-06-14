@@ -35,18 +35,36 @@ exports.demoQuickReply = () => { // Bot Introduction
     };
 };
 
-exports.userReply = () => {
+exports.userReply = (message, yes, no) => {
     return {
-        "text": "Do you confirm the details above ?",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Yes",
+                "title": yes,
                 "payload": "Yes"
             },
             {
                 "content_type": "text",
-                "title": "No",
+                "title": no,
                 "payload": "No"
+            }
+
+        ]
+    }
+}
+
+exports.chooseLanguage = () => {
+    return {
+        "text": "How would you like me to communicate with you?",
+        "quick_replies": [{
+                "content_type": "text",
+                "title": "English",
+                "payload": "English"
+            },
+            {
+                "content_type": "text",
+                "title": "ગુજરાતી",
+                "payload": "ગુજરાતી"
             }
 
         ]
@@ -97,9 +115,9 @@ exports.menuSelector = () => {
     }
 }
 
-exports.quizStart = () => {
+exports.quizStart = (message) => {
     return {
-        "text": "Click on the 'Start' button to initiate the quiz",
+        "text": message,
         "quick_replies": [{
             "content_type": "text",
             "title": "Start",
@@ -108,27 +126,27 @@ exports.quizStart = () => {
     };
 }
 
-exports.question1 = () => {
+exports.question1 = (message, op1, op2, op3, op4) => {
     return {
-        "text": "*Question 1*\nWhich one of the following river flows between Vindhyan and Satpura ranges?",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Narmada",
+                "title": op1,
                 "payload": "Narmada"
             },
             {
                 "content_type": "text",
-                "title": "Mahanadi",
+                "title": op2,
                 "payload": "Mahanadi"
             },
             {
                 "content_type": "text",
-                "title": "Sabarmati",
+                "title": op3,
                 "payload": "Sabarmati"
             },
             {
                 "content_type": "text",
-                "title": "Ganga",
+                "title": op4,
                 "payload": "Ganga"
             }
 
@@ -138,17 +156,17 @@ exports.question1 = () => {
 
 }
 
-exports.question2 = () => {
+exports.question2 = (message, yes, no) => {
     return {
-        "text": "*Question 2*\nThe first country in the world to use postcards was the United States of America.",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Yes",
+                "title": yes,
                 "payload": "yesquestion2"
             },
             {
                 "content_type": "text",
-                "title": "No",
+                "title": no,
                 "payload": "noquestion2"
             }
 
@@ -157,9 +175,9 @@ exports.question2 = () => {
 
 }
 
-exports.question3 = () => {
+exports.question3 = (message) => {
     return {
-        "text": "*Question 3*\nWhich among the following headstreams meets the Ganges in last?",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
                 "title": "Mandakini",
@@ -176,27 +194,27 @@ exports.question3 = () => {
 
 }
 
-exports.question4 = () => {
+exports.question4 = (message, op1, op2, op3, op4) => {
     return {
-        "text": "*Question 4*\nOnce upon a time there _________ (live) a man called Damocles.",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
-                "title": "lived",
+                "title": op1,
                 "payload": "lived"
             },
             {
                 "content_type": "text",
-                "title": "was lived",
+                "title": op2,
                 "payload": "waslived"
             },
             {
                 "content_type": "text",
-                "title": "an lived",
+                "title": op3,
                 "payload": "anlived"
             },
             {
                 "content_type": "text",
-                "title": "live",
+                "title": op4,
                 "payload": "live"
             }
 
@@ -205,17 +223,17 @@ exports.question4 = () => {
 
 }
 
-exports.question5 = () => {
+exports.question5 = (message, yes, no) => {
     return {
-        "text": "*Question 5*\nBill Gates is the founder of Amazon.",
+        "text": message,
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Yes",
+                "title": yes,
                 "payload": "yesquestion5"
             },
             {
                 "content_type": "text",
-                "title": "No",
+                "title": no,
                 "payload": "noquestion5"
             }
 

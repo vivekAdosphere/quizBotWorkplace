@@ -2,7 +2,7 @@ const mapNames = require("../configuration/mapNames");
 const { clearMaps } = require("../utilities/utilities")
 const { MapToLocal } = require("../services/mapToLocalDB");
 const languageChooser = require("../language/languageChooser");
-const { userReply, quizStart, question1, question2, question3, question4, question5, menuSelector } = require("../utilities/payloadStorage")
+const { userReply, chooseLanguage, quizStart, question1, question2, question3, question4, question5, menuSelector } = require("../utilities/payloadStorage")
 const { sendTextMessage, sendQuickReplyMessage, sendVideoFile, sendImageFile, sendCardMenu } = require("../services/messageSenders");
 
 // Map Variables
@@ -44,14 +44,25 @@ let userDataUpdator = (senderID, key, value) => {
 //the chat function starts from here
 //when user initiate the conversation then this function will call
 //this funciton set the flowapth to 1
-exports.initConversationHandler = async(senderID) => {
+exports.languageHandler = async(senderID) => {
     try {
         clearMaps(senderID)
+        await sendQuickReplyMessage(senderID, chooseLanguage())
+
+    } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
+        clearMaps(senderID)
+    }
+}
+
+exports.initConversationHandler = async(senderID) => {
+    try {
         await sendTextMessage(senderID, languageChooser(senderID).welcomeMessage)
         await sendTextMessage(senderID, languageChooser(senderID).existingUser)
-        await sendQuickReplyMessage(senderID, userReply())
+        await sendQuickReplyMessage(senderID, userReply(languageChooser(senderID).confirmData, languageChooser(senderID).confirmYes, languageChooser(senderID).confirmNo))
         setDefaultMapValues(senderID)
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 
@@ -80,6 +91,7 @@ exports.nameHandler = async(senderID) => {
         flowPathIndicator.set(senderID, "2")
 
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -89,6 +101,7 @@ exports.designationHandler = async(senderID) => {
         await sendTextMessage(senderID, languageChooser(senderID).askForDesignation)
         flowPathIndicator.set(senderID, "3")
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -99,6 +112,7 @@ exports.districtIdHandler = async(senderID) => {
         flowPathIndicator.set(senderID, "menu")
 
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -108,20 +122,22 @@ exports.quizHandler = async(senderID) => {
         await sendTextMessage(senderID, languageChooser(senderID).videoHold)
         await sendVideoFile(senderID)
         await sendTextMessage(senderID, languageChooser(senderID).learnFromVideo);
-        await sendQuickReplyMessage(senderID, quizStart())
+        await sendQuickReplyMessage(senderID, quizStart(languageChooser(senderID).initiateQuiz))
         flowPathIndicator.set(senderID, "quiztext")
 
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
 
 exports.question1Handler = async(senderID) => {
     try {
-        await sendQuickReplyMessage(senderID, question1())
+        await sendQuickReplyMessage(senderID, question1(languageChooser(senderID).questionOne, languageChooser(senderID).question1Op1, languageChooser(senderID).question1Op2, languageChooser(senderID).question1Op3, languageChooser(senderID).question1Op4))
         flowPathIndicator.set(senderID, "question1")
         userDataUpdator(senderID, "score", 0)
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -130,9 +146,10 @@ exports.question2Handler = async(senderID, message) => {
         if (message === "Narmada") {
             userDataUpdator(senderID, "score", 1)
         }
-        await sendQuickReplyMessage(senderID, question2())
+        await sendQuickReplyMessage(senderID, question2(languageChooser(senderID).questionTwo, languageChooser(senderID).confirmYes, languageChooser(senderID).confirmNo))
         flowPathIndicator.set(senderID, "question2")
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -142,9 +159,10 @@ exports.question3Handler = async(senderID, message) => {
             userDataUpdator(senderID, "score", userData.get(senderID).score + 1)
             console.log(userData.get(senderID).score)
         }
-        await sendQuickReplyMessage(senderID, question3())
+        await sendQuickReplyMessage(senderID, question3(languageChooser(senderID).questionThree, languageChooser(senderID).question3Op1, languageChooser(senderID).question3Op2))
         flowPathIndicator.set(senderID, "question3")
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -156,9 +174,10 @@ exports.question4Handler = async(senderID, message) => {
         }
         console.log(userData.get(senderID).score)
 
-        await sendQuickReplyMessage(senderID, question4())
+        await sendQuickReplyMessage(senderID, question4(languageChooser(senderID).questionFour, languageChooser(senderID).question4Op1, languageChooser(senderID).question4Op2, languageChooser(senderID).question4Op3, languageChooser(senderID).question4Op4))
         flowPathIndicator.set(senderID, "question4")
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -169,11 +188,12 @@ exports.question5Handler = async(senderID, message) => {
         }
         console.log(userData.get(senderID).score)
 
-        await sendQuickReplyMessage(senderID, question5())
+        await sendQuickReplyMessage(senderID, question5(languageChooser(senderID).questionFive, languageChooser(senderID).confirmYes, languageChooser(senderID).confirmNo))
         flowPathIndicator.set(senderID, "question5")
 
 
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -182,6 +202,7 @@ exports.otherTextMessageHandler = async(senderID) => {
     try {
         sendTextMessage(senderID, languageChooser(senderID).invalidInputMessage)
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
@@ -193,11 +214,12 @@ exports.thankYouMessageSender = async(senderID, message) => {
         }
         console.log(userData.get(senderID).score)
 
-        await sendTextMessage(senderID, languageChooser(senderID).thankYouMsg + ", " + `your score is ${userData.get(senderID).score}/5`)
+        await sendTextMessage(senderID, languageChooser(senderID).thankYouMsg + ", " + `${userData.get(senderID).score}/5`)
         await sendImageFile(senderID)
         clearMaps(senderID)
 
     } catch (err) {
+        logger.error(`Error,${JSON.stringify(err.response.data)}`)
         clearMaps(senderID)
     }
 }
